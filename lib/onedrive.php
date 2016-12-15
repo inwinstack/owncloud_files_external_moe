@@ -38,7 +38,7 @@ class OneDrive extends \OC\Files\Storage\Common {
 	private $clientSecret;
 	private $state;
 	private $rootDir;
-    private $user;
+        private $user;
 	private static $tempFiles = array();
 
 
@@ -58,7 +58,7 @@ class OneDrive extends \OC\Files\Storage\Common {
 		    ));
 		    //check if token expired less than 60 second will renew token
 		    if ($this->onedrive_client->getTokenExpire() < 60){
-                $this->renewToken();		        
+                        $this->renewToken();
 		    }
 		    
 		    $mountData = \OC_Mount_Config::readData($this->user);
@@ -87,7 +87,7 @@ class OneDrive extends \OC\Files\Storage\Common {
 	 */
 	private function getDriveFile($path) {
 		// Remove leading and trailing slashes
-			$path = trim($path, '/');
+                $path = trim($path, '/');
 		if (isset($this->driveFiles[$path])) {
 			return $this->driveFiles[$path];
 		} else if ($path === '' || $path === '.' || $path === $this->rootDir) {
@@ -206,13 +206,15 @@ class OneDrive extends \OC\Files\Storage\Common {
         }
         else{
             foreach ($objects as $object){
-                //$this->setDriveFile($path.'/'.$object->getName(), $object);
-                //if ($object->isFolder()){
-                //    $files[] = $object->getName();
-                //}
-                //else{
+                if (! $object->isFolder()){
+                    if ($object->fetchProperties()->type !== 'notebook'){
+                        $files[] = $object->getName();
+                    }
+                }
+                else{
                     $files[] = $object->getName();
-                //}
+                }
+
             }
         
             return IteratorDirectory::wrap($files);
@@ -415,6 +417,9 @@ class OneDrive extends \OC\Files\Storage\Common {
 		        return 'httpd/unix-directory';
 		    }
 		    else{
+                        if ($file->fetchProperties()->type == 'notebook'){
+                            return 'notebook';
+                        }
 		        $mimetype = \OC::$server->getMimeTypeDetector()->detect($path);
 		        return $mimetype;
 		    }
