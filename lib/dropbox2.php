@@ -363,7 +363,15 @@ class Dropbox2 extends \OC\Files\Storage\Common {
 		}
 		return true;
 	}
-    
+        public function hasUpdated($path, $time) {
+	    $size = \OC::$server->getConfig()->getUserValue(\OC_User::getUser(), "dropbox", "size",0);
+	    $freeSize = $this->free_space($path);
+	    if ($freeSize != $size){
+	        \OC::$server->getConfig()->setUserValue(\OC_User::getUser(), "dropbox", "size",$freeSize);
+	        return true;
+	    }
+	    return false;
+	}
 	public function test() {
 	    if ($this->free_space('')) {
 	        
