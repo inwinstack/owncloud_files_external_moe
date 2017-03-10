@@ -333,7 +333,11 @@ class Dropbox2 extends \OC\Files\Storage\Common {
 		if ($this->filetype($path) == 'dir') {
 			return 'httpd/unix-directory';
 		} else {
-		        $mimetype = \OC::$server->getMimeTypeDetector()->detect($path);
+		        $mimetype = @\OC::$server->getMimeTypeDetector()->detect($path);
+                        if (!$mimetype){
+                            $mimetype = 'application/octet-stream';
+                        }
+
 		        return $mimetype;
 		}
 		return false;
