@@ -390,6 +390,8 @@ class Dropbox2 extends \OC\Files\Storage\Common {
 	public static function checkDependencies() {
 		return true;
 	}
-
+        public function isSharable($path) {
+                            return false;
+        }
 }
 
