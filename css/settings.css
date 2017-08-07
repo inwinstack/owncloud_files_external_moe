@@ -97,3 +97,6 @@ td.mountPoint, td.backend { width:160px; }
 	background: #ce3702;
 }
 
+#files_external h2 {
+        display: inline-block;
+}
