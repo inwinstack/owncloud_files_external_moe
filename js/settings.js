@@ -919,6 +919,9 @@ MountConfigListView.prototype = _.extend({
 		storage.destroy({
 			success: function() {
 				$tr.remove();
+                                if($('#externalStorage tr').length == 1 || $('#externalStorage tr').length == 2){
+                                    $('#externalStorage thead').hide();
+                                }
 			},
 			error: function() {
 				self.updateStatus($tr, StorageConfig.Status.ERROR);

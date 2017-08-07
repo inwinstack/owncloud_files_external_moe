@@ -76,6 +76,7 @@
     	<br>
     
     	<table id="externalStorage" class="grid" data-admin='<?php print_unescaped(json_encode($_['isAdminPage'])); ?>'>
+                <?php if(!empty($_['storages'])): ?>
     		<thead>
     			<tr>
     				<th></th>
@@ -88,6 +89,7 @@
     				<th>&nbsp;</th>
     			</tr>
     		</thead>
+                <?php endif;?>
     		<tbody>
     		<?php foreach ($_['storages'] as $storage): ?>
     			<tr class="<?php p($storage->getBackend()->getIdentifier()); ?>" data-id="<?php p($storage->getId()); ?>">
