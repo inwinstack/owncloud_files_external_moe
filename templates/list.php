@@ -8,6 +8,7 @@
 	<div class="icon-external"></div>
 	<h2><?php p($l->t('No external storage configured')); ?></h2>
 	<p><?php p($l->t('You can add external storages in the personal settings')); ?></p>
+        <img class="img" src="<?php print_unescaped(image_path('files_external_moe', 'step1.png')); ?>">
 </div>
 
 <input type="hidden" name="dir" value="" id="dir">
