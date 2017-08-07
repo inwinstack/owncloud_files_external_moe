@@ -28,14 +28,7 @@ h3 {
 
 }
 </style>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>雲端儲存服務</title>
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
+<div>
     <h1>我要怎麼加入我的外部儲存空間?</h1>
     <h3>以Google Drive為例</h3>
     <p id="file_external_moe_help">
@@ -57,5 +50,4 @@ h3 {
     <p id="file_external_moe_help">
       5.點擊允許，就成功把你Google Drive中的檔案加入到你的雲端儲存空間囉！
     </p>
-  </body>
-</html>
+</div>
