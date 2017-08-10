@@ -32,15 +32,15 @@ h3 {
     <h1>我要怎麼加入我的外部儲存空間?</h1>
     <h3>以Google Drive為例</h3>
     <p id="file_external_moe_help">
-      1.展開帳號設定選單，點擊 [帳號資訊] 開啟帳號設定頁面。
+      1.展開帳號設定選單，點擊 <strong>[帳號資訊]</strong> 開啟帳號設定頁面。
     </p>
     <img class="img" src="<?php print_unescaped(image_path('files_external_moe', 'step1.png')); ?>">
     <p id="file_external_moe_help">
-      2.點選左邊清單中的外部儲存選項，可快速移動至設定畫面，並點選[Google Drive]。
+      2.點選左邊清單中的外部儲存選項，可快速移動至設定畫面，並點選 <strong>[Google Drive]</strong>。
     </p>
     <img class="img" src="<?php print_unescaped(image_path('files_external_moe', 'step2.png')); ?>">
     <p id="file_external_moe_help">
-      3.按下[新增]。
+      3.按下 <strong>[新增]</strong>。
     </p>
     <img class="img" src="<?php print_unescaped(image_path('files_external_moe', 'step3.png')); ?>">
     <p id="file_external_moe_help">

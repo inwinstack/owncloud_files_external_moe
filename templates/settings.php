@@ -57,7 +57,7 @@
 <?php if(\OC::$server->getAppManager()->isEnabledForUser('files_external_moe')):?>
     <form id="files_external" class="section" data-encryption-enabled="<?php echo $_['encryptionEnabled']?'true': 'false'; ?>">
     	<h2><?php p($l->t('External Storage')); ?></h2>
-        <a class="files_external_info icon-info svg" title="" data-original-title=<?php p($l->t('Help')); ?>></a>
+        <a class="files_external_info svg" title="" data-original-title=<?php p($l->t('Help')); ?>></a>
     	<?php if (isset($_['dependencies']) and ($_['dependencies']<>'')) print_unescaped(''.$_['dependencies'].''); ?>
     
     	<?php if (!$_['isAdminPage']): ?>

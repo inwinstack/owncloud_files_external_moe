@@ -100,3 +100,10 @@ td.mountPoint, td.backend { width:160px; }
 #files_external h2 {
         display: inline-block;
 }
+
+.files_external_info{
+    background: url('../img/help.png') no-repeat center;
+    padding: 11px 20px;
+    vertical-align: text-bottom;
+}
+
