@@ -59,6 +59,9 @@ $this->create('files_external_moe_externalpathcheck', 'ajax/externalpathcheck.ph
 $this->create('files_external_moe_list_applicable', '/applicable')
 	->actionInclude('files_external_moe/ajax/applicable.php');
 
+$this->create('files_external_moe_list_help', 'help.php')
+->actionInclude('files_external_moe/help.php');
+
 \OCP\API::register('get',
 		'/apps/files_external_moe/api/v1/mounts',
 		array('\OCA\Files\External\Api', 'getUserMounts'),

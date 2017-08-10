@@ -1,4 +1,5 @@
 <?php
+        OC_Util::addScript('files_external_moe','help');
 	use \OCA\Files_External_MOE\Lib\Backend\Backend;
 	use \OCA\Files_External_MOE\Lib\DefinitionParameter;
 	use \OCA\Files_External_MOE\Service\BackendService;
@@ -56,6 +57,7 @@
 <?php if(\OC::$server->getAppManager()->isEnabledForUser('files_external_moe')):?>
     <form id="files_external" class="section" data-encryption-enabled="<?php echo $_['encryptionEnabled']?'true': 'false'; ?>">
     	<h2><?php p($l->t('External Storage')); ?></h2>
+        <a class="files_external_info svg" title="" data-original-title=<?php p($l->t('Help')); ?>></a>
     	<?php if (isset($_['dependencies']) and ($_['dependencies']<>'')) print_unescaped(''.$_['dependencies'].''); ?>
     
     	<?php if (!$_['isAdminPage']): ?>
