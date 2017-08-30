@@ -3,6 +3,10 @@
 ?>
 <!DOCTYPE html>
 <style type="text/css">
+#closeWizard{
+    position:absolute;
+    right:10px;
+}
 h1 {
   font-family: "Merriweather", serif;
   padding: 20px 0px;
@@ -29,6 +33,9 @@ h3 {
 }
 </style>
 <div>
+    <a id="closeWizard" class="close">
+        <img class="svg" src="<?php print_unescaped(OCP\Util::imagePath('core', 'actions/close.svg')); ?>">
+    </a>
     <h1>我要怎麼加入我的外部儲存空間?</h1>
     <h3>以Google Drive為例</h3>
     <p id="file_external_moe_help">
