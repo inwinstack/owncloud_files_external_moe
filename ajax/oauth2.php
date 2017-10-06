@@ -124,7 +124,11 @@ else if(isset($_POST['client_type']) && $_POST['client_type'] == 'dropbox2'){
                     $authHelper = $dropbox->getAuthHelper();
                     
                     $callbackUrl = $_POST['redirect'];
-                    $accessToken = $authHelper->getAccessToken($_POST['code'], $_POST['state'], $callbackUrl);
+                    if (substr($_POST['code'],-1) == '#'){
+                       $code = substr($_POST['code'],0,-1);
+                    }
+                    else {$code = $_POST['code'];}
+                    $accessToken = $authHelper->getAccessToken($code, $_POST['state'], $callbackUrl);
                     $token = $accessToken->getToken();
                     OCP\JSON::success(array('data' => array(
                     'token' => $token,
