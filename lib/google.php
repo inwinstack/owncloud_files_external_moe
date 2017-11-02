@@ -122,8 +122,11 @@ class Google extends \OC\Files\Storage\Common {
 					if (!empty($result)) {
 						// Google Drive allows files with the same name, ownCloud doesn't
 						if (count($result) > 1) {
-							$this->onDuplicateFileDetected($path);
-							return false;
+							//$this->onDuplicateFileDetected($path);
+							//return false;
+                                                        $file = $result[0];
+                                                        $this->driveFiles[$path] = $file;
+                                                        $parentId = $file->getId();
 						} else {
 							$file = current($result);
 							$this->driveFiles[$path] = $file;
@@ -280,9 +283,9 @@ class Google extends \OC\Files\Storage\Common {
 					if ($key !== false || isset($duplicates[$filepath])) {
 						if (!isset($duplicates[$filepath])) {
 							$duplicates[$filepath] = true;
-							$this->setDriveFile($filepath, false);
-							unset($files[$key]);
-							$this->onDuplicateFileDetected($filepath);
+							//$this->setDriveFile($filepath, false);
+							//unset($files[$key]);
+							//$this->onDuplicateFileDetected($filepath);
 						}
 					} else {
 						// Cache the Google_Service_Drive_DriveFile for future use
