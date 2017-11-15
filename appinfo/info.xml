@@ -10,6 +10,9 @@
 	<licence>AGPL</licence>
 	<author>Duncan Chiang, Dino Pen</author>
 	<version>0.1.0</version>
+        <types>
+                <filesystem/>
+        </types>
 	<dependencies>
 		<owncloud min-version="8.2" />
 	</dependencies>
