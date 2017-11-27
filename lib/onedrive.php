@@ -62,14 +62,16 @@ class OneDrive extends \OC\Files\Storage\Common {
 		    }
 		    
 		    $mountData = \OC_Mount_Config::readData($this->user);
-		    $mountDataDetail = $mountData['user'][$this->user];
-		    foreach ($mountDataDetail as $key => $value){
-		        if(array_key_exists(('client_id'),$value['options'])){
-		            if ($value['options']['client_id'] == $params['client_id']){
-		                $this->rootDir = str_replace('/'.$this->user.'/files/',"",$key);
+                    if (!empty($mountData)){
+		        $mountDataDetail = $mountData['user'][$this->user];
+		        foreach ($mountDataDetail as $key => $value){
+		            if(array_key_exists(('client_id'),$value['options'])){
+		                if ($value['options']['client_id'] == $params['client_id']){
+		                    $this->rootDir = str_replace('/'.$this->user.'/files/',"",$key);
+		                }
 		            }
 		        }
-		    }
+                    }
 		} else {
 			throw new \Exception('Creating \OC\Files\Storage\OneDrive storage failed');
 		}
@@ -88,6 +90,9 @@ class OneDrive extends \OC\Files\Storage\Common {
 	private function getDriveFile($path) {
 		// Remove leading and trailing slashes
                 $path = trim($path, '/');
+                if ($path === '' || $path === '.' || $path === $this->rootDir){
+                    $path = $this->rootDir;
+                }
 		if (isset($this->driveFiles[$path])) {
 			return $this->driveFiles[$path];
 		} else if ($path === '' || $path === '.' || $path === $this->rootDir) {
