@@ -94,6 +94,9 @@ class Google extends \OC\Files\Storage\Common {
 	private function getDriveFile($path) {
 		// Remove leading and trailing slashes
 		$path = trim($path, '/');
+                if ($path === '.') {
+                        $path = '';
+                }
 		if (isset($this->driveFiles[$path])) {
 			return $this->driveFiles[$path];
 		} else if ($path === '') {
@@ -138,7 +141,7 @@ class Google extends \OC\Files\Storage\Common {
 						if ($pos !== false) {
 							$pathWithoutExt = substr($path, 0, $pos);
 							$file = $this->getDriveFile($pathWithoutExt);
-							if ($file) {
+							if ($file && $this->isGoogleDocFile($file)) {
 								// Switch cached Google_Service_Drive_DriveFile to the correct index
 								unset($this->driveFiles[$pathWithoutExt]);
 								$this->driveFiles[$path] = $file;
@@ -155,6 +158,17 @@ class Google extends \OC\Files\Storage\Common {
 			return $this->driveFiles[$path];
 		}
 	}
+
+        /**
+         * Returns whether the given drive file is a Google Doc file
+         *
+         * @param \Google_Service_Drive_DriveFile
+         *
+         * @return true if the file is a Google Doc file, false otherwise
+         */
+        private function isGoogleDocFile($file) {
+                return $this->getGoogleDocExtension($file->getMimeType()) !== '';
+        }
 
 	/**
 	 * Set the Google_Service_Drive_DriveFile object in the cache
@@ -309,7 +323,7 @@ class Google extends \OC\Files\Storage\Common {
 				$stat['size'] = 0;
 			} else {
 				// Check if this is a Google Doc
-				if ($this->getMimeType($path) !== $file->getMimeType()) {
+				if ($this->isGoogleDocFile($file)) {
 					// Return unknown file size
 					$stat['size'] = \OCP\Files\FileInfo::SPACE_UNKNOWN;
 				} else {
